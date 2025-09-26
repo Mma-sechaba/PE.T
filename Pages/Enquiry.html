@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PE.T Enquiry Form</title>
+
+  <link rel="stylesheet" href="../CSS/style.css">
+
+
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Welcome to PE.T PROGRAM!</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="./about.html">About us</a>
+      <a href="./service.html">Service</a>
+      <a href="./contact.html">Contact us</a>
+      <a href="./products.html">Products</a>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <h2>Submit an Enquiry</h2>
+    <p>If you have questions about our peer tutoring services, please fill out the form below.</p>
+
+    <form action="submit_enquiry.php" method="post">
+      <fieldset>
+        <legend>Your Details</legend>
+
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required><br><br>
+
+        <label for="email">Email Address:</label><br>
+        <input type="email" id="email" name="email" placeholder="yourname@example.com" required><br><br>
+
+        <label for="subject">Subject:</label><br>
+        <input type="text" id="subject" name="subject" placeholder="Enter subject" required><br><br>
+
+        <label for="message">Enquiry Details:</label><br>
+        <textarea id="message" name="message" rows="5" placeholder="Type your enquiry here..." required></textarea><br><br>
+      </fieldset>
+
+      <button type="submit">Submit Enquiry</button>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 PE.T Peer Tutoring Program. All rights reserved.</p>
+  </footer>
+</body>
+</html>

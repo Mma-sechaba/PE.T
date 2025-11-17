@@ -1,4 +1,4 @@
-/* Reset some default styles */
+/* Reset default styles */
 * {
   margin: 0;
   padding: 0;
@@ -40,8 +40,10 @@ header nav a {
   transition: color 0.3s ease;
 }
 
-header nav a:hover {
+header nav a:hover,
+header nav a.active {
   color: #ffcc00;
+  text-decoration: underline;
 }
 
 hr {
@@ -55,7 +57,7 @@ hr {
 main {
   max-width: 900px;
   margin: 30px auto;
-  padding: 0 20px;
+  padding: 20px;
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -99,19 +101,85 @@ footer {
   border-top-right-radius: 10px;
 }
 
-/* ===================== */
-/* Responsive Design */
-/* ===================== */
+/* Back to Top Button */
+#topBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: none;
+  background-color: #1e90ff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: background 0.3s;
+}
 
-/* Small screens (phones) */
-@media (max-width: 100px) {
+#topBtn:hover {
+  background-color: #0b5ed7;
+}
+
+/* Highlight input and textarea on focus */
+input:focus, textarea:focus {
+  border: 2px solid #1e90ff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(30,144,255,0.5);
+}
+
+/* Style the submit button */
+button[type="submit"] {
+  background-color: #1e90ff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #0b5ed7;
+}
+
+/* Hover effect for table rows */
+table tbody tr:hover {
+  background-color: #f0f8ff;
+  transition: background 0.3s;
+}
+
+/* Product links */
+main section a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+main section a:hover {
+  text-decoration: underline;
+}
+
+/* Cursor for clickable headings */
+main section h3 {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+main section h3:hover {
+  color: #1e90ff;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
   header nav {
     flex-direction: column;
     gap: 10px;
   }
 
   main {
-    padding: 20px 15px;
+    padding: 15px;
   }
 
   header h1 {
@@ -119,7 +187,6 @@ footer {
   }
 }
 
-/* Medium screens (tablets) */
 @media (max-width: 900px) {
   main {
     max-width: 95%;
@@ -131,7 +198,6 @@ footer {
   }
 }
 
-/* Large screens (desktops >1200px) */
 @media (min-width: 1200px) {
   main {
     max-width: 1100px;
@@ -141,3 +207,183 @@ footer {
     font-size: 2.5rem;
   }
 }
+/* Mobile navigation adjustments */
+@media (max-width: 600px) {
+  header nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  main {
+    padding: 15px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive Google Map */
+.map-container iframe {
+  width: 100%;
+  height: 300px; /* Adjust for mobile */
+}
+/* ===================== */
+/* Gallery Section Styling */
+/* ===================== */
+#gallery {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+#gallery h2 {
+  color: #004080;
+  margin-bottom: 15px;
+}
+
+#gallery p {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 1rem;
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px; /* spacing between items */
+  justify-items: center;
+  align-items: center;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  display: block;
+  object-fit: cover;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Responsive for small devices */
+@media (max-width: 600px) {
+  .gallery-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Lightbox Styles */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Search Bar Styles */
+.search-container {
+  position: relative;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#searchInput:focus {
+  border-color: #1e90ff;
+}
+
+#searchResults {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+}
+
+.search-result {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.search-result:hover {
+  background-color: #f9f9f9;
+}
+
+.search-result:last-child {
+  border-bottom: none;
+}
+

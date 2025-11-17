@@ -1,21 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact - PE.T PROGRAM</title>
+  <title>Contact Us - PE.T Peer Tutoring Program</title>
+  <meta name="description" content="Get in touch with PE.T Peer Tutoring Program. Contact us for tutoring support, send messages, view our location on the map, and check operating hours.">
+  <meta name="keywords" content="contact PE.T, peer tutoring contact, tutoring support, location map, operating hours, send message">
   <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
   <!-- Header -->
   <header>
     <h1>Welcome to PE.T PROGRAM!</h1>
-    <nav>
+  <nav>
       <a href="../index.html">Home</a>
       <a href="./about.html">About us</a>
       <a href="./service.html">Service</a>
       <a href="./contact.html">Contact us</a>
       <a href="./products.html">Products</a>
+      <a href="./gallery.html">Gallery</a>
     </nav>
     <hr>
   </header>
@@ -40,26 +44,33 @@
       </ul>
     </section>
 
-    <section id="form">
-      <h2>Send Us a Message</h2>
-      <form action="submit_contact.php" method="post">
-        <label for="name">Your Name:</label><br>
-        <input type="text" id="name" name="name" required><br><br>
+   <section id="form">
+  <h2>Send Us a Message</h2>
+  <form id="contactForm">
+    <label for="name">Your Name:</label><br>
+    <input type="text" id="name" name="name" required title="All input is required"><br><br>
 
-        <label for="email">Your Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+    <label for="email">Your Email:</label><br>
+    <input type="email" id="email" name="email" required title="All input is required"><br><br>
 
-        <label for="message">Your Message:</label><br>
-        <textarea id="message" name="message" rows="5" required></textarea><br><br>
+    <label for="message">Your Message:</label><br>
+    <textarea id="message" name="message" rows="5" required title="All input is required"></textarea><br><br>
 
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <!-- Feedback message -->
+  <p id="formFeedback" style="display:none; margin-top:10px; color:green;"></p>
+</section>
+
 
     <section id="location">
       <h2>Our Location</h2>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.94973574326!2d28.00892077415644!3d-26.067899058434207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95747bc629e68b%3A0x21bab4d51e5de635!2sAWSM%20Web%20Development!5e0!3m2!1sen!2sie!4v1756208523512!5m2!1sen!2sie" 
-      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.94973574326!2d28.00892077415644!3d-26.067899058434207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95747bc629e68b%3A0x21bab4d51e5de635!2sAWSM%20Web%20Development!5e0!3m2!1sen!2sie!4v1756208523512!5m2!1sen!2sie"
+        style="border:0;width:100%;height:450px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <p><a href="https://www.google.com/maps/dir/?api=1&destination=AWSM+Web+Development" target="_blank" style="color: #1e90ff; text-decoration: none;">Get Directions</a></p>
+      </div>
     </section>
   </main>
 
@@ -68,6 +79,12 @@
     <hr>
     <p>Author: Mmasechaba Nkadimeng</p>
     <p>&copy; 2025 PE.T PROGRAM. All rights reserved.</p>
+    <small><a href="mailto:mmasechabakgolane@gmail.com">mmasechabakgolane@gmail.com</a></small>
+    <button id="topBtn">⬆ Back to Top</button>
   </footer>
+
+  <!-- JS -->
+  <script src="../JS/main.js"></script>
+  <script src="../JS/contact.js"></script>
 </body>
 </html>

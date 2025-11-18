@@ -109,6 +109,36 @@ Screenshots available in `Assets/` folder:
 
 ## Changelog
 
+GitHub: Project Pushed with Multiple Descriptive Commits
+GitHub: README Document Contains All Relevant Information
+GitHub: Changelog Section Contains a Record of Development
+Skill: Form Functionality: Contact Process Email
+Skill: Form Functionality: Contact Validation
+Skill: Form Functionality: Contact Validation
+Skill: Form Functionality: Contact Controls
+Skill: Form Functionality: Enquiry Process Response (Feedback)
+Functionality: Dynamic Content and Search Feature
+Score of Functionality: Dynamic Content and Search Feature
+Score of Skill: SEO: Title Tags,
+Skill: SEO: Meta - Keywords
+Score of Skill: SEO: Meta - Keywords
+Skill: SEO: Meta - Description
+Score of Skill: SEO: Meta - Description
+Skill: SEO: Images - File Name and Alt-Text
+Score of Skill: SEO: Images - File Name and Alt-Text
+Skill: Form Functionality: Enquiry Controls
+Score of Skill: Form Functionality: Enquiry Controls
+Skill: Form Functionality: Enquiry Validation
+Knowledge : Feedback for Part 2
+No technical documentation.
+
+Missing changelog (part development recoeds) contents.it was changed
+
+Project pushed to GitHub, but no records of commits.it was changed
+
+The layout for the goodle map & the navigation were not defined well for smaller devices.it was changed
+
+
 ### 2025-11-13
 - **Added**: Gallery lightbox functionality
 - **Added**: Dynamic search bar on homepage

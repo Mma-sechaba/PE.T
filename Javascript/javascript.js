@@ -1,3 +1,4 @@
+
 // Unified JavaScript for PE.T Website
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -19,20 +20,26 @@ document.addEventListener("DOMContentLoaded", () => {
    ---------------------------------------- */
   const navLinks = document.querySelectorAll("nav a");
   const currentPage = location.pathname.split("/").pop();
+
   navLinks.forEach(link => {
-    if (link.getAttribute("href").includes(currentPage)) {
+    const href = link.getAttribute("href");
+    if (href && href.endsWith(currentPage)) {
       link.classList.add("active");
     }
   });
 
   /* ----------------------------------------
-   * 3️⃣ Smooth Scroll
+   * 3️⃣ Smooth Scroll (Safe Version)
    ---------------------------------------- */
   document.addEventListener("click", (e) => {
     if (e.target.matches('a[href^="#"]')) {
-      e.preventDefault();
-      const target = document.querySelector(e.target.getAttribute("href"));
-      if (target) target.scrollIntoView({ behavior: "smooth" });
+      const id = e.target.getAttribute("href");
+      const target = document.querySelector(id);
+
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth" });
+      }
     }
   });
 
@@ -53,9 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ----------------------------------------
-   * 5️⃣ Form Validation (Contact and Enquiry)
+   * 5️⃣ Contact Form Validation (Single Corrected Block)
    ---------------------------------------- */
-  // Contact Form Validation
   const contactForm = document.getElementById("contactForm");
   const contactFeedback = document.getElementById("formFeedback");
 
@@ -82,21 +88,25 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      contactFeedback.textContent = `Thank you, ${name}! Your message has been received.`;
+      contactFeedback.textContent = `Thank you, ${name}! Your message has been sent successfully. We will respond within 24 hours.`;
       contactFeedback.style.color = "green";
       contactFeedback.style.display = "block";
       contactForm.reset();
+
+      setTimeout(() => contactFeedback.style.display = "none", 5000);
     });
   }
 
-  // Enquiry Form Validation
+  /* ----------------------------------------
+   * 6️⃣ Enquiry Form Validation (Single Block)
+   ---------------------------------------- */
   const enquiryForm = document.getElementById("enquiryForm");
   const enquiryFeedback = document.createElement("p");
-  enquiryFeedback.id = "enquiryFeedback";
-  enquiryFeedback.style.display = "none";
-  enquiryFeedback.style.marginTop = "10px";
 
   if (enquiryForm) {
+    enquiryFeedback.id = "enquiryFeedback";
+    enquiryFeedback.style.display = "none";
+    enquiryFeedback.style.marginTop = "10px";
     enquiryForm.appendChild(enquiryFeedback);
 
     enquiryForm.addEventListener("submit", (e) => {
@@ -122,17 +132,22 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      enquiryFeedback.textContent = `Thank you, ${name}! Your enquiry has been submitted.`;
+      enquiryFeedback.textContent =
+        `Thank you, ${name}! Your enquiry about "${subject}" has been submitted. We will get back to you soon.`;
       enquiryFeedback.style.color = "green";
       enquiryFeedback.style.display = "block";
       enquiryForm.reset();
+
+      setTimeout(() => enquiryFeedback.style.display = "none", 5000);
     });
   }
 
   /* ----------------------------------------
-   * 6️⃣ Collapsible Sections
+   * 7️⃣ Collapsible Sections (FIXED: does NOT affect Gallery)
    ---------------------------------------- */
   document.querySelectorAll("main section").forEach(section => {
+    if (section.id === "gallery") return; // FIX: Don't collapse gallery
+
     const heading = section.querySelector("h2, h3");
     const content = [...section.children].filter(el => el !== heading);
 
@@ -141,14 +156,14 @@ document.addEventListener("DOMContentLoaded", () => {
       content.forEach(el => el.style.display = "none");
 
       heading.addEventListener("click", () => {
-        const isHidden = content[0].style.display === "none";
-        content.forEach(el => el.style.display = isHidden ? "block" : "none");
+        const hidden = content[0].style.display === "none";
+        content.forEach(el => el.style.display = hidden ? "block" : "none");
       });
     }
   });
 
   /* ----------------------------------------
-   * 7️⃣ Table Row Hover
+   * 8️⃣ Table Row Hover
    ---------------------------------------- */
   document.querySelectorAll("table tbody tr").forEach(row => {
     row.addEventListener("mouseenter", () => row.style.backgroundColor = "#f0f8ff");
@@ -156,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ----------------------------------------
-   * 8️⃣ Product Description Toggle (More Specific)
+   * 9️⃣ Product Description Toggle
    ---------------------------------------- */
   document.querySelectorAll(".product").forEach(product => {
     const link = product.querySelector("a");
@@ -173,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ----------------------------------------
-   * 9️⃣ Gallery Lightbox
+   * 🔟 Gallery Lightbox (Working Version)
    ---------------------------------------- */
   const galleryImages = document.querySelectorAll('.gallery-item img');
   const lightbox = document.getElementById('lightbox');
@@ -181,21 +196,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const caption = document.getElementById('caption');
   const closeBtn = document.querySelector('.close');
 
-  galleryImages.forEach(img => {
-    img.addEventListener('click', () => {
-      lightbox.style.display = 'block';
-      lightboxImg.src = img.src;
-      caption.textContent = img.alt;
+  if (lightbox && lightboxImg && caption) {
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'block';
+        lightboxImg.src = img.src;
+        caption.textContent = img.alt;
+      });
     });
-  });
 
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      lightbox.style.display = 'none';
-    });
-  }
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        lightbox.style.display = 'none';
+      });
+    }
 
-  if (lightbox) {
     lightbox.addEventListener('click', (e) => {
       if (e.target === lightbox) {
         lightbox.style.display = 'none';
@@ -204,12 +219,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ----------------------------------------
-   * 🔍 Dynamic Search Functionality
+   * 1️⃣1️⃣ Dynamic Search
    ---------------------------------------- */
   const searchInput = document.getElementById('searchInput');
   const searchResults = document.getElementById('searchResults');
 
   if (searchInput && searchResults) {
+
     const pages = [
       { title: 'Home', url: 'index.html', description: 'Welcome to PE.T Peer Tutoring Program' },
       { title: 'About Us', url: 'Pages/about.html', description: 'Learn about our mission and goals' },
@@ -217,121 +233,47 @@ document.addEventListener("DOMContentLoaded", () => {
       { title: 'Contact Us', url: 'Pages/contact.html', description: 'Get in touch with our team' },
       { title: 'Products', url: 'Pages/products.html', description: 'Educational resources and materials' },
       { title: 'Gallery', url: 'Pages/gallery.html', description: 'View our tutoring sessions and events' },
-      { title: 'Enquiry Form', url: 'Pages/Enquiry.html', description: 'Submit questions about our services' }
+      { title: 'Enquiry Form', url: 'Pages/Enquiry.html', description: 'Ask us anything!' }
     ];
 
     searchInput.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase().trim();
       searchResults.innerHTML = '';
 
-      if (query.length > 0) {
-        const filteredPages = pages.filter(page =>
-          page.title.toLowerCase().includes(query) ||
-          page.description.toLowerCase().includes(query)
-        );
-
-        if (filteredPages.length > 0) {
-          filteredPages.forEach(page => {
-            const resultDiv = document.createElement('div');
-            resultDiv.className = 'search-result';
-            resultDiv.innerHTML = `<strong>${page.title}</strong><br><small>${page.description}</small>`;
-            resultDiv.addEventListener('click', () => {
-              window.location.href = page.url;
-            });
-            searchResults.appendChild(resultDiv);
-          });
-          searchResults.style.display = 'block';
-        } else {
-          searchResults.style.display = 'none';
-        }
-      } else {
+      if (!query) {
         searchResults.style.display = 'none';
+        return;
       }
+
+      const filtered = pages.filter(page =>
+        page.title.toLowerCase().includes(query) ||
+        page.description.toLowerCase().includes(query)
+      );
+
+      if (filtered.length === 0) {
+        searchResults.style.display = 'none';
+        return;
+      }
+
+      filtered.forEach(page => {
+        const result = document.createElement('div');
+        result.className = 'search-result';
+        result.innerHTML = `<strong>${page.title}</strong><br><small>${page.description}</small>`;
+
+        result.addEventListener('click', () => {
+          window.location.href = page.url;
+        });
+
+        searchResults.appendChild(result);
+      });
+
+      searchResults.style.display = 'block';
     });
 
-    // Hide results when clicking outside
     document.addEventListener('click', (e) => {
       if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
         searchResults.style.display = 'none';
       }
-    });
-  }
-
-  /* ----------------------------------------
-   * 📧 Enhanced Form Processing Response
-   ---------------------------------------- */
-  // Enhanced Contact Form Response
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const name = contactForm.name.value.trim();
-      const email = contactForm.email.value.trim();
-      const message = contactForm.message.value.trim();
-
-      if (!name || !email || !message) {
-        contactFeedback.textContent = "All input is required.";
-        contactFeedback.style.color = "red";
-        contactFeedback.style.display = "block";
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        contactFeedback.textContent = "Please enter a valid email address.";
-        contactFeedback.style.color = "red";
-        contactFeedback.style.display = "block";
-        return;
-      }
-
-      // Simulate email sending
-      contactFeedback.textContent = `Thank you, ${name}! Your message has been sent successfully. We will respond within 24 hours.`;
-      contactFeedback.style.color = "green";
-      contactFeedback.style.display = "block";
-      contactForm.reset();
-
-      // Hide feedback after 5 seconds
-      setTimeout(() => {
-        contactFeedback.style.display = "none";
-      }, 5000);
-    });
-  }
-
-  // Enhanced Enquiry Form Response
-  if (enquiryForm) {
-    enquiryForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const name = enquiryForm.name.value.trim();
-      const email = enquiryForm.email.value.trim();
-      const subject = enquiryForm.subject.value.trim();
-      const message = enquiryForm.message.value.trim();
-
-      if (!name || !email || !subject || !message) {
-        enquiryFeedback.textContent = "All input is required.";
-        enquiryFeedback.style.color = "red";
-        enquiryFeedback.style.display = "block";
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        enquiryFeedback.textContent = "Please enter a valid email address.";
-        enquiryFeedback.style.color = "red";
-        enquiryFeedback.style.display = "block";
-        return;
-      }
-
-      // Simulate form submission
-      enquiryFeedback.textContent = `Thank you, ${name}! Your enquiry about "${subject}" has been submitted. Our team will review it and get back to you soon.`;
-      enquiryFeedback.style.color = "green";
-      enquiryFeedback.style.display = "block";
-      enquiryForm.reset();
-
-      // Hide feedback after 5 seconds
-      setTimeout(() => {
-        enquiryFeedback.style.display = "none";
-      }, 5000);
     });
   }
 
